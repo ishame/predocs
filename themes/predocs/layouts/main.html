@@ -30,15 +30,5 @@
     <script src="${script}"></script>
     <% } %>
     <script src="${resource('/js/my.js')}"></script>
-    <% if (config.watch) { %>
-    <script>
-      if (window.WebSocket) {
-        var socket = new WebSocket("ws://localhost:${config.serverPort}/");
-        socket.onmessage = function () {
-          location.reload();
-        };
-      }
-    </script>
-    <% } %>
   </body>
 </html>

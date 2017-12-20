@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Grails - publish plugin - Predocs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\css\bootstrap.min.css">
+    <link rel="stylesheet" href="..\css\font-awesome.min.css">
+    <link rel="stylesheet" href="..\css\highlight.css">
+    <link rel="stylesheet" href="..\css\style.css">
+    <link rel="stylesheet" href="..\css\my.css">
+  </head>
+  <body>
+    <a href="https://github.com/ishame/predocs"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 100; margin: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+    <div class="wrapper">
+      <div class="header">
+        <i class="fa fa-bars sidebar-toggle"></i>
+        <span class="title"><a href="..\development-guides.html">Predocs</a></span>
+      </div>
+      <div class="sidebar">
+        <ul>
+          <li class="unnumbered visible">
+            <a href="..\development-guides.html" data-alt-hash="beginners-guide-to-development">BEGINNERS GUIDE to DEVELOPMENT</a>
+            <ul>
+              <li class="unnumbered invisible"><a href="..\development-guides.html#extension-development">Extension development</a></li>
+              <li class="unnumbered invisible">
+                <a href="..\development-guides.html#tips-and-tricks">Tips and Tricks</a>
+                <ul>
+                  <li class="unnumbered invisible"><a href="..\development-guides.html#github-glossary">GitHub Glossary</a></li>
+                </ul>
+              </li>
+              <li class="unnumbered invisible"><a href="..\development-guides.html#sample-code">Sample code</a></li>
+              <li class="unnumbered invisible"><a href="..\development-guides.html#other-toolslibs-not-used-but-to-keep-an-eye-on">Other tools/libs not used, but to keep an eye on</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="content-handle"></div>
+        <div class="content-container">
+          <div class="content-nav content-nav-top">
+          </div>
+          <div class="page-toc">
+            <ul>
+              <li class="unnumbered visible">
+                <a href="#grails---publish-plugin">Grails - publish plugin</a>
+                <ul>
+                  <li class="unnumbered visible"><a href="#on-the-distribution">On the distribution</a></li>
+                  <li class="unnumbered visible"><a href="#on-the-grails-plugin">On the Grails plugin</a></li>
+                  <li class="unnumbered visible"><a href="#on-the-app-which-use-plugin">On the app which use plugin</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="main-content">
+            <h1 id="grails---publish-plugin">Grails - publish plugin</h1>
+            <p>just a simple guide for getting started with Grails 3 plugin.</p>
+            <h2 id="on-the-distribution">On the distribution</h2>
+            <p>Grails 3 plugins are distributed through Bintray, so first signup/signin to <a href="https://bintray.com">https://bintray.com</a> (one-click signin with GitHub or Twitter),</p>
+            <p>Create a new maven repository called plugins on your account</p>
+            <p><img src="..\images\new-maven-repository.png" alt="plugins"/></p>
+            <p>Edit your Bintray profile to get your personal API Key</p>
+            <p><img src="..\images\get-api-key.png" alt="key"/></p>
+            <p>Add BINTRAY_USER and BINTRAY_KEY to your env variables</p>
+            <pre><code class="nohighlight">BINTRAY_USER=ishame
+BINTRAY_KEY=xxxxxxxxxxxxxxxxxx
+</code></pre>
+            <h2 id="on-the-grails-plugin">On the Grails plugin</h2>
+            <p>create a plugin by command</p>
+            <pre><code class="nohighlight">grails create-plugin sample-plugin,
+</code></pre>
+            <p>create a service in the plugin</p>
+            <pre><code class="nohighlight">cd sample-plugin
+grails create-service Name
+</code></pre>
+            <p>edit method within the service <code>grails-app/services/myplugin/NameService.groovy</code></p>
+            <p> class NameService {</p>
+            <pre><code class="nohighlight">    def name() {
+        &#39;Grails.3x Plugin&#39;
+    }
+}
+</code></pre>
+            <p>edit <code>build.gradle</code></p>
+            <pre><code class="nohighlight">grailsPublish {
+    user = System.getProperty(&#39;BINTRAY_USER&#39;)
+    key = System.getProperty(&#39;BINTRAY_KEY&#39;)
+    githubSlug = &#39;user/repository&#39;
+    license {
+        name = &#39;Apache-2.0&#39;
+    }
+    title = &quot;sample-plugin&quot;
+    desc = &quot;Grails sample-plugin plugin&quot;
+    developers = [hoge:&quot;Hoge Hoge&quot;]
+}
+</code></pre>
+            <p>simply run <code>gradle bintrayUpload</code> from your project root.</p>
+            <h2 id="on-the-app-which-use-plugin">On the app which use plugin</h2>
+            <p>Create and edit <code>build.gradle</code></p>
+            <pre><code class="nohighlight">// Replace benorama by your user/organization name
+repositories {
+  ...
+  maven { url &quot;https://dl.bintray.com/ishame/plugins&quot; }
+}
+dependencies {
+  ...
+  compile &quot;org.grails.plugins:sample-plugin:0.1&quot;
+}
+</code></pre>
+          </div>
+          <div class="content-nav content-nav-bottom">
+          </div>
+          <div class="footer">
+            <p class="version text-muted">Version 0.1</p>
+            <p class="credit text-muted">Powered by <a href="https://github.com/kobo/gaiden">Gaiden</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="..\js\jquery-2.1.1.min.js"></script>
+    <script src="..\js\highlight.js"></script>
+    <script src="..\js\application.js"></script>
+    <script src="..\js\my.js"></script>
+  </body>
+</html>
