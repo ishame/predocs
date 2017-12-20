@@ -1,20 +1,21 @@
 // title
 // Base title of pages.
 // Note: check encoding for the title using multi-bytes.
-//title = "default"
+title = "Predocs"
 
 // The version of this document
-//version = ""
+version = "0.1"
 
 // The path of source files directory
 //sourceDirectoryPath = "."
 
 // The path of directory to be outputted a document
-//outputDirectoryPath = "docs"
+outputDirectoryPath = "docs"
 
 // theme
 // This setting specifies a theme.
 // default: default (means ./themes/default/ )
+theme = "predocs"
 
 // layout
 // This setting specifies a layout file which is used by default.
@@ -43,7 +44,7 @@
 // numbering
 // This parameter enables the numbering of the documentation.
 // default: true
-//numbering = false
+numbering = false
 
 // numberingOffset
 // This parameter represents the offset to start the numbering. A Header Level can be used in this setting. This parameter is based on 0.
