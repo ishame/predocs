@@ -1,4 +1,8 @@
-<div class="content">
+<% if (metadata.showSidebar != null ? metadata.showSidebar : true) { %>
+  <div class="content">
+<% } else { %>
+  <div class="content" style="margin-left: 0px;">
+<% } %>
   <div class="content-handle"></div>
   <div class="content-container">
     <div class="content-nav content-nav-top">

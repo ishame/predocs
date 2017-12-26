@@ -1,3 +1,4 @@
+<% if (metadata.showSidebar != null ? metadata.showSidebar : true) { %>
 <div class="sidebar">
   <% if (document.pageOrder) { %>
   ${include('documentToc')}
@@ -5,3 +6,4 @@
   ${include('explorer')}
   <% } %>
 </div>
+<% } %>

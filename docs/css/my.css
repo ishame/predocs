@@ -15,7 +15,7 @@
  */
 
 .header {
-    background: #16a085;
+    background: #24292e;
 }
 
 .header .build-id {
@@ -32,11 +32,19 @@
 }
 
 .sidebar {
-    width: 440px;
+    width: 300px;
 }
 
 .content {
-    margin-left: 440px;
+    margin-left: 300px;
+}
+
+.content-noslide {
+    margin-left: 10px;
+}
+
+.footer .credit {
+    float: left;
 }
 
 h1 {

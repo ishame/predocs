@@ -1,4 +1,7 @@
-<div class="page-toc">
+<div class="page-toc page-toc-shrinked">
+    <span class="fa fa-list"></span>
+</div>
+<div class="page-toc page-toc-expanded" style="max-height: 402px; display: none;">
 <%
 def maxDepth = currentPage.metadata.pageTocDepth as Integer ?: config.pageTocDepth
 def levels = []

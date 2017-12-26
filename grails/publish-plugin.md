@@ -1,6 +1,6 @@
-# Grails - publish plugin 
+# Grails - Publish plugin 
 
-just a simple guide for getting started with Grails 3 plugin.
+Just a simple guide for getting started with Grails 3 plugin.
 
 ## On the distribution
 
